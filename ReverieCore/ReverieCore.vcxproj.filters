@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Reverie">
+      <UniqueIdentifier>{57BB10A0-C39A-8F3B-CCB2-1A123811F69C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reverie\Math">
+      <UniqueIdentifier>{90CE2C2D-7C31-BCD1-25B7-F48711F98754}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Core.h" />
+    <ClInclude Include="Source\Reverie\Math\Common.h">
+      <Filter>Reverie\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Math\Math.h">
+      <Filter>Reverie\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Math\Matrix.h">
+      <Filter>Reverie\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Math\Quaternion.h">
+      <Filter>Reverie\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Math\Scalar.h">
+      <Filter>Reverie\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Math\Vector.h">
+      <Filter>Reverie\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\pch.cpp" />
+  </ItemGroup>
+</Project>

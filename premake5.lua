@@ -24,7 +24,7 @@ project "ReverieCore"
     objdir("bin-int/" ..outputdir .. "/%{prj.name}")
 
     pchheader "pch.h"
-    pchsource "Reverie/Source/pch.cpp"
+    pchsource "ReverieCore/Source/pch.cpp"
 
     files
     {
@@ -65,17 +65,17 @@ project "ReverieCore"
         }
 
     filter "configurations:Debug"
-        defines { "HZ_DEBUG", "HZ_ENABLE_ASSERTS" }
+        defines { "REVERIE_DEBUG", "REVERIE_ENABLE_ASSERTS" }
         runtime "Debug" 
         symbols "On"
 
     filter "configurations:Release"
-        defines { "HZ_RELEASE" }
+        defines { "REVERIE_RELEASE" }
         runtime "Release"
         optimize "On"
 
     filter "configurations:Dist"
-        defines { "HZ_DIST" }
+        defines { "REVERIE_DIST" }
         runtime "Release"
         optimize "Full"
         
@@ -97,14 +97,14 @@ project "Sandbox"
 
     includedirs
     {
-        "Reverie/Vendor/spdlog/include",
-        "Reverie/Vendor/DirectX/include",
-        "Reverie/Source"
+        "ReverieCore/Vendor/spdlog/include",
+        "ReverieCore/Vendor/DirectX/include",
+        "ReverieCore/Source"
     }
 
     links
     {
-        "Reverie"
+        "ReverieCore"
     }
 
     filter "system:windows"
@@ -125,16 +125,16 @@ project "Sandbox"
         {
         }
     filter "configurations:Debug"
-        defines { "HZ_DEBUG" }
+        defines { "REVERIE_DEBUG" }
         runtime "Debug" 
         symbols "On"
 
     filter "configurations:Release"
-        defines { "HZ_RELEASE" }
+        defines { "REVERIE_RELEASE" }
         runtime "Release"
         optimize "On"
 
     filter "configurations:Dist"
-        defines { "HZ_DIST" }
+        defines { "REVERIE_DIST" }
         runtime "Release"
         optimize "Full"

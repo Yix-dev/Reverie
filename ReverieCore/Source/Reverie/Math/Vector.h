@@ -3,6 +3,7 @@
 #include "Scalar.h"
 namespace Reverie::Math
 {
+	class Matrix3;
 	class Vector4;
 	class Vector3
 	{
@@ -60,10 +61,12 @@ namespace Reverie::Math
 		INLINE Vector3 operator/(Scalar s) const { return *this / Vector3(s); }
 		INLINE Vector3 operator*(float f) const { return *this * Scalar(f); }
 		INLINE Vector3 operator/(float f) const { return *this / Scalar(f); }
+		INLINE Vector3 operator*(const Matrix3& mat) const;
 
 		INLINE Vector3 operator+=(Vector3 vec) { *this = *this + vec; return *this; }
 		INLINE Vector3 operator-=(Vector3 vec) { *this = *this - vec; return *this; }
 		INLINE Vector3 operator*=(Vector3 vec) { *this = *this * vec; return *this; }
+		INLINE Vector3 operator*=(const Matrix3& mat);
 		INLINE Vector3 operator/=(Vector3 vec) { *this = *this / vec; return *this; }
 
 		INLINE friend Vector3 operator*(Scalar s, Vector3 vec)

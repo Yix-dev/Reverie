@@ -16,7 +16,7 @@
     <ClInclude Include="Source\Reverie\Math\Math.h">
       <Filter>Reverie\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Reverie\Math\Matrix.h">
+    <ClInclude Include="Source\Reverie\Math\Matrix3.h">
       <Filter>Reverie\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Reverie\Math\Quaternion.h">
@@ -29,8 +29,22 @@
       <Filter>Reverie\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Reverie\Event\Event.h" />
+    <ClInclude Include="Source\Reverie\Event\KeyEvent.h" />
+    <ClInclude Include="Source\Reverie\Event\MouseEvent.h" />
+    <ClInclude Include="Source\Reverie\Event\WindowEvent.h" />
+    <ClInclude Include="Source\Reverie\Event\ApplicationEvent.h" />
+    <ClInclude Include="Source\Reverie\Utility.h" />
+    <ClInclude Include="Source\Reverie\Math\Transform.h" />
+    <ClInclude Include="Source\Reverie\Application\Window.h" />
+    <ClInclude Include="Source\Reverie\Application\Application.h" />
+    <ClInclude Include="Source\Reverie\Math\BoundingBox.h" />
+    <ClInclude Include="Source\Reverie\Math\BoundingSphere.h" />
+    <ClInclude Include="Source\Reverie\Math\Matrix4.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp" />
+    <ClCompile Include="Source\Reverie\Application\Window.cpp" />
+    <ClCompile Include="Source\Reverie\Application\Application.cpp" />
   </ItemGroup>
 </Project>

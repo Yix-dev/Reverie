@@ -153,18 +153,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core.h" />
+    <ClInclude Include="Source\Reverie\Application\Application.h" />
+    <ClInclude Include="Source\Reverie\Application\Window.h" />
+    <ClInclude Include="Source\Reverie\Event\ApplicationEvent.h" />
+    <ClInclude Include="Source\Reverie\Event\Event.h" />
+    <ClInclude Include="Source\Reverie\Event\KeyEvent.h" />
+    <ClInclude Include="Source\Reverie\Event\MouseEvent.h" />
+    <ClInclude Include="Source\Reverie\Event\WindowEvent.h" />
+    <ClInclude Include="Source\Reverie\Math\BoundingBox.h" />
+    <ClInclude Include="Source\Reverie\Math\BoundingSphere.h" />
     <ClInclude Include="Source\Reverie\Math\Common.h" />
     <ClInclude Include="Source\Reverie\Math\Math.h" />
-    <ClInclude Include="Source\Reverie\Math\Matrix.h" />
+    <ClInclude Include="Source\Reverie\Math\Matrix3.h" />
+    <ClInclude Include="Source\Reverie\Math\Matrix4.h" />
     <ClInclude Include="Source\Reverie\Math\Quaternion.h" />
     <ClInclude Include="Source\Reverie\Math\Scalar.h" />
+    <ClInclude Include="Source\Reverie\Math\Transform.h" />
     <ClInclude Include="Source\Reverie\Math\Vector.h" />
     <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Reverie\Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Reverie\Application\Application.cpp" />
+    <ClCompile Include="Source\Reverie\Application\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -41,6 +41,10 @@
     <ClInclude Include="Source\Reverie\Math\BoundingBox.h" />
     <ClInclude Include="Source\Reverie\Math\BoundingSphere.h" />
     <ClInclude Include="Source\Reverie\Math\Matrix4.h" />
+    <ClInclude Include="Source\Reverie\Log.h" />
+    <ClInclude Include="Source\Reverie\Event\Eventbus.h" />
+    <ClInclude Include="Source\Reverie\Application\System.h" />
+    <ClInclude Include="Source\Reverie\EntryPoint.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp" />

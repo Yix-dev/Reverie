@@ -154,12 +154,16 @@
   <ItemGroup>
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\Reverie\Application\Application.h" />
+    <ClInclude Include="Source\Reverie\Application\System.h" />
     <ClInclude Include="Source\Reverie\Application\Window.h" />
+    <ClInclude Include="Source\Reverie\EntryPoint.h" />
     <ClInclude Include="Source\Reverie\Event\ApplicationEvent.h" />
     <ClInclude Include="Source\Reverie\Event\Event.h" />
+    <ClInclude Include="Source\Reverie\Event\Eventbus.h" />
     <ClInclude Include="Source\Reverie\Event\KeyEvent.h" />
     <ClInclude Include="Source\Reverie\Event\MouseEvent.h" />
     <ClInclude Include="Source\Reverie\Event\WindowEvent.h" />
+    <ClInclude Include="Source\Reverie\Log.h" />
     <ClInclude Include="Source\Reverie\Math\BoundingBox.h" />
     <ClInclude Include="Source\Reverie\Math\BoundingSphere.h" />
     <ClInclude Include="Source\Reverie\Math\Common.h" />

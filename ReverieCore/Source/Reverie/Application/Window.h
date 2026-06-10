@@ -3,6 +3,8 @@
 #include <string>
 #include <Windows.h>
 
+#include "Reverie/Event/Eventbus.h"
+
 namespace Reverie
 {
 	class Event;
@@ -17,9 +19,8 @@ namespace Reverie
 	class Window
 	{
 	public:
-		using EventCallbackFn = std::function<void(Event&)>;
 
-		Window() :m_Hwnd(nullptr), m_Width(0), m_Height(0){}
+		Window() :m_Hwnd(nullptr), m_Width(0), m_Height(0), m_Eventbus(nullptr){}
 		~Window();
 
 		Window(const Window& window) = delete;
@@ -30,13 +31,12 @@ namespace Reverie
 		inline uint32_t GetHeight() const { return m_Height; }
 		inline uint32_t GetWidth() const { return m_Width; }
 
-		inline void SetEventCallback(const EventCallbackFn& callback) { m_EventCallback = callback; }
 		inline HWND GetHandle() const { return m_Hwnd; }
 
 		
 		bool IsValid() const { return m_Hwnd != nullptr; }
-		void Initialize(const HINSTANCE& instance, const WindowDesc& desc);
-		void ShutDown();
+		void Initialize(const HINSTANCE& instance, const WindowDesc& desc, Eventbus* eventbus);
+		void Shutdown();
 
 	private:
 		static LRESULT CALLBACK StaticWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -44,7 +44,7 @@ namespace Reverie
 
 	private:
 		HWND m_Hwnd;
-		EventCallbackFn m_EventCallback;
+		Eventbus* m_Eventbus;
 
 		bool m_Maximized = false;
 		bool m_Minimized = false;

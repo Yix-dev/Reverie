@@ -28,10 +28,12 @@ namespace Reverie
 		return DefWindowProc(hWnd, msg, wParam, lParam);
 	}
 
-	void Window::Initialize(const HINSTANCE& App, const WindowDesc& Desc)
+	void Window::Initialize(const HINSTANCE& App, const WindowDesc& Desc, Eventbus* eventbus)
 	{
 		if (m_Hwnd != nullptr)
 			return;
+		m_Eventbus = eventbus;
+
 		m_Title = Desc.Title;
 		m_Width = Desc.Width;
 		m_Height = Desc.Height;
@@ -71,7 +73,7 @@ namespace Reverie
 
 	Window::~Window()
 	{
-		ShutDown();
+		Shutdown();
 	}
 
 	void Window::OnUpdate()
@@ -84,7 +86,7 @@ namespace Reverie
 		}
 	}
 
-	void Window::ShutDown()
+	void Window::Shutdown()
 	{
 		if (m_Hwnd)
 		{
@@ -95,8 +97,6 @@ namespace Reverie
 
 	LRESULT Window::WindowProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
 	{
-		if (!m_EventCallback)
-			return DefWindowProc(hWnd, Message, wParam, lParam);
 		switch (Message)
 		{
 		case WM_ACTIVATE:
@@ -104,13 +104,11 @@ namespace Reverie
 
 			if (LOWORD(wParam) == WA_INACTIVE)
 			{
-				WindowLostFocusEvent e;
-				m_EventCallback(e);
+				m_Eventbus->Publish(WindowLostFocusEvent());
 			}
 			else
 			{
-				WindowFocusEvent e;
-				m_EventCallback(e);
+				m_Eventbus->Publish(WindowFocusEvent());
 			}
 			return 0;
 		}
@@ -124,47 +122,39 @@ namespace Reverie
 			{
 				if (wParam == SIZE_MINIMIZED)
 				{
-					AppPauseEvent e;
-					m_EventCallback(e);
+					m_Eventbus->Publish(AppPauseEvent());
 					m_Minimized = true;
 					m_Maximized = false;
 				}
 				else if (wParam == SIZE_MAXIMIZED)
 				{
-					AppResumeEvent e;
-					m_EventCallback(e);
+					m_Eventbus->Publish(AppResumeEvent());
 					m_Minimized = false;
 					m_Maximized = true;
-					WindowResizeEvent e1(m_Width, m_Height);
-					m_EventCallback(e1);
+					m_Eventbus->Publish(WindowResizeEvent(m_Width, m_Height));
 				}
 				else if (wParam == SIZE_RESTORED)
 				{
 
 					if (m_Minimized)
 					{
-						AppResumeEvent e;
-						m_EventCallback(e);
+						m_Eventbus->Publish(AppResumeEvent());
 						m_Minimized = false;
-						WindowResizeEvent e1(m_Width, m_Height);
-						m_EventCallback(e1);
+						m_Eventbus->Publish(WindowResizeEvent(m_Width, m_Height));
 					}
 
 					else if (m_Maximized)
 					{
-						AppResumeEvent e;
-						m_EventCallback(e);
+						m_Eventbus->Publish(AppResumeEvent());
 						m_Maximized = false;
-						WindowResizeEvent e1(m_Width, m_Height);
-						m_EventCallback(e1);
+						m_Eventbus->Publish(WindowResizeEvent(m_Width, m_Height));
 					}
 					else if (m_Resizing)
 					{
 					}
 					else
 					{
-						WindowResizeEvent e(m_Width, m_Height);
-						m_EventCallback(e);
+						m_Eventbus->Publish(WindowResizeEvent(m_Width, m_Height));
 					}
 				}
 			}
@@ -173,8 +163,7 @@ namespace Reverie
 
 		case WM_ENTERSIZEMOVE:
 		{
-			AppPauseEvent e;
-			m_EventCallback(e);
+			m_Eventbus->Publish(AppPauseEvent());
 			m_Resizing = true;
 			return 0;
 		}
@@ -182,18 +171,14 @@ namespace Reverie
 		case WM_EXITSIZEMOVE:
 		{
 			m_Resizing = false;
-			WindowResizeEvent e1(m_Width, m_Height);
-			m_EventCallback(e1);
-			AppResumeEvent e;
-			m_EventCallback(e);
+			m_Eventbus->Publish(WindowResizeEvent(m_Width, m_Height));
+			m_Eventbus->Publish(AppResumeEvent());
 			return 0;
 		}
 
 		case WM_DESTROY:
 		{
-			WindowCloseEvent e;
-			m_EventCallback(e);
-
+			m_Eventbus->Publish(WindowCloseEvent());
 			PostQuitMessage(0);
 			return 0;
 		}
@@ -212,16 +197,14 @@ namespace Reverie
 		case WM_MOUSEWHEEL:
 		{
 			float yOffset = (float)GET_WHEEL_DELTA_WPARAM(wParam) / (float)WHEEL_DELTA;
-			MouseScrolledEvent e(0.0f, yOffset);
-			m_EventCallback(e);
+			m_Eventbus->Publish(MouseScrolledEvent(0.0f, yOffset));
 			return 0;
 		}
 
 		case WM_MOUSEHWHEEL:
 		{
 			float xOffset = (float)GET_WHEEL_DELTA_WPARAM(wParam) / (float)WHEEL_DELTA;
-			MouseScrolledEvent e(xOffset, 0.0f);
-			m_EventCallback(e);
+			m_Eventbus->Publish(MouseScrolledEvent(xOffset, 0.0f));
 			return 0;
 		}
 
@@ -229,8 +212,7 @@ namespace Reverie
 		case WM_MBUTTONDOWN:
 		case WM_RBUTTONDOWN:
 		{
-			MouseButtonPressedEvent e(wParam);
-			m_EventCallback(e);
+			m_Eventbus->Publish(MouseButtonPressedEvent(wParam));
 			return 0;
 		}
 
@@ -238,30 +220,26 @@ namespace Reverie
 		case WM_MBUTTONUP:
 		case WM_RBUTTONUP:
 		{
-			MouseButtonReleasedEvent e(wParam);
-			m_EventCallback(e);
+			m_Eventbus->Publish(MouseButtonReleasedEvent(wParam));
 			return 0;
 		}
 
 		case WM_MOUSEMOVE:
 		{
-			MouseMovedEvent e(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-			m_EventCallback(e);
+			m_Eventbus->Publish(MouseMovedEvent(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)));
 			return 0;
 		}
 
 		case WM_KEYDOWN:
 		{
 			bool IsRepeat = (lParam & (1 << 30)) != 0;
-			KeyPressedEvent e(wParam, IsRepeat ? 1 : 0);
-			m_EventCallback(e);
+			m_Eventbus->Publish(KeyPressedEvent(wParam, IsRepeat ? 1 : 0));
 			return 0;
 		}
 
 		case WM_KEYUP:
 		{
-			KeyReleasedEvent e(wParam);
-			m_EventCallback(e);
+			m_Eventbus->Publish(KeyReleasedEvent(wParam));
 			return 0;
 		}
 

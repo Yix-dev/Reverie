@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Event.h"
+#include "EventBase.h"
 
 namespace Reverie
 {
-	class MouseMovedEvent : public Event
+	class MouseMovedEvent : public EventBase
 	{
 	public:
 		MouseMovedEvent(float x, float y):m_MouseX(x), m_MouseY(y){}
@@ -23,7 +23,7 @@ namespace Reverie
 		float m_MouseX, m_MouseY;
 	};
 
-	class MouseScrolledEvent : public Event
+	class MouseScrolledEvent : public EventBase
 	{
 	public:
 		MouseScrolledEvent(float x, float y) :m_OffsetX(x), m_OffsetY(y) {}
@@ -43,7 +43,7 @@ namespace Reverie
 		float m_OffsetX, m_OffsetY;
 	};
 
-	class MouseButtonEvent : public Event
+	class MouseButtonEvent : public EventBase
 	{
 	public:
 		inline int GetMouseButton() const { return m_Button; }

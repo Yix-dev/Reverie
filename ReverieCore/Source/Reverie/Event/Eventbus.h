@@ -1,7 +1,7 @@
 #pragma once
 #include <typeindex>
 
-#include "Event.h"
+#include "EventBase.h"
 
 namespace Reverie
 {
@@ -18,7 +18,7 @@ namespace Reverie
 	struct SubscriberEntry
 	{
 		uint32_t ID;
-		std::function<bool(Event&)> Callback;
+		std::function<bool(EventBase&)> Callback;
 		int Priority;
 
 		bool operator<(const SubscriberEntry& s) const
@@ -60,17 +60,17 @@ namespace Reverie
 		SubscriberHandle Subscribe(std::function<bool(TEvent&)> callback, int priority = Priority::Normal)
 		{
 			//TODO own assert
-			static_assert(std::is_base_of_v<Event, TEvent>, "Invalid Event");
+			static_assert(std::is_base_of_v<EventBase, TEvent>, "Invalid EventBase");
 
 			uint32_t ID = m_NextID++;
 
-			auto& wrapper = [callback](Event& e) -> bool
+			auto wrapper = [callback](EventBase& e) -> bool
 				{
 					return callback(static_cast<TEvent&>(e));
 				};
 
 			auto& list = m_SubscriberList[typeid(TEvent)];
-			list.emplace_back(ID, priority, std::move(wrapper));
+			list.emplace_back(ID,std::move(wrapper), priority);
 
 			std::sort(list.begin(), list.end(), [](const SubscriberEntry& a, const SubscriberEntry& b)
 			{
@@ -99,7 +99,7 @@ namespace Reverie
 		void Publish(TEvent& e)
 		{
 			//TODO own assert
-			static_assert(std::is_base_of_v<Event, TEvent>, "Invalid Event");
+			static_assert(std::is_base_of_v<EventBase, TEvent>, "Invalid EventBase");
 
 			auto it = m_SubscriberList.find(typeid(e));
 			if (it == m_SubscriberList.end())

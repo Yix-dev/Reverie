@@ -1,8 +1,8 @@
 #pragma once
-#include "Event.h"
+#include "EventBase.h"
 namespace Reverie
 {
-	class KeyEvent : public Event
+	class KeyEvent : public EventBase
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }

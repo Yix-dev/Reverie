@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "Window.h"
+
 #include "Reverie/Event/ApplicationEvent.h"
 #include "Reverie/Event/KeyEvent.h"
 #include "Reverie/Event/MouseEvent.h"
@@ -38,7 +40,7 @@ namespace Reverie
 		m_Width = Desc.Width;
 		m_Height = Desc.Height;
 
-		HZ_CORE_INFO("Creating window {0} ({1} {2})", Desc.Title, Desc.Width, Desc.Height);
+		//HZ_CORE_INFO("Creating window {0} ({1} {2})", Desc.Title, Desc.Width, Desc.Height);
 
 		WNDCLASSEX wc = { 0 };
 		wc.cbSize = sizeof(WNDCLASSEX);
@@ -54,7 +56,7 @@ namespace Reverie
 		wc.hIconSm = LoadIcon(App, IDI_APPLICATION);
 		wc.lpszClassName = L"MainWindow";
 		bool success = RegisterClassEx(&wc);
-		HZ_CORE_ASSERT(success, "Register Class failed");
+		//HZ_CORE_ASSERT(success, "Register Class failed");
 
 		RECT R = { 0, 0,  (LONG)m_Width,  (LONG)m_Height };
 		AdjustWindowRect(&R, WS_OVERLAPPEDWINDOW, FALSE);
@@ -64,7 +66,10 @@ namespace Reverie
 		m_Hwnd = CreateWindowExW(0, L"MainWindow", WideTitle.data(),
 			WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, width, height, nullptr, nullptr, App, this);
 
-		HZ_CORE_ASSERT(m_Hwnd, "Create Window Failed");
+		m_Dpi = GetDpiForWindow(m_Hwnd);
+		m_Scale = (float)m_Dpi / 96.0f;
+
+		//HZ_CORE_ASSERT(m_Hwnd, "Create Window Failed");
 
 		ShowWindow(m_Hwnd, SW_SHOW);
 		UpdateWindow(m_Hwnd);
@@ -158,6 +163,25 @@ namespace Reverie
 					}
 				}
 			}
+			return 0;
+		}
+
+		case WM_DPICHANGED:
+		{
+			m_Dpi = HIWORD(wParam);
+			m_Scale = (float)m_Dpi / 96.0f;
+
+			// windows gives you the correct new rect -- always use it
+			RECT* rect = reinterpret_cast<RECT*>(lParam);
+			SetWindowPos(m_Hwnd, nullptr,
+				rect->left,
+				rect->top,
+				rect->right - rect->left,
+				rect->bottom - rect->top,
+				SWP_NOZORDER | SWP_NOACTIVATE
+			);
+
+			m_Eventbus->Publish(WindowResizeEvent(m_Width, m_Height));
 			return 0;
 		}
 

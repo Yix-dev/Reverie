@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Event.h"
+#include "EventBase.h"
 
 namespace Reverie
 {
 
-	class AppTickEvent : public Event
+	class AppTickEvent : public EventBase
 	{
 	public:
 		AppTickEvent() = default;
@@ -14,7 +14,7 @@ namespace Reverie
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AppUpdateEvent : public Event
+	class AppUpdateEvent : public EventBase
 	{
 	public:
 		AppUpdateEvent() = default;
@@ -23,7 +23,7 @@ namespace Reverie
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AppRenderEvent : public Event
+	class AppRenderEvent : public EventBase
 	{
 	public:
 		AppRenderEvent() = default;
@@ -32,7 +32,7 @@ namespace Reverie
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AppPauseEvent : public Event 
+	class AppPauseEvent : public EventBase 
 	{
 	public:
 		AppPauseEvent() = default;
@@ -40,7 +40,7 @@ namespace Reverie
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AppResumeEvent : public Event 
+	class AppResumeEvent : public EventBase 
 	{
 	public:
 		AppResumeEvent() = default;

@@ -11,9 +11,9 @@ namespace Reverie::Math
 		INLINE Matrix3() {}
 		INLINE Matrix3(Vector3 x, Vector3 y, Vector3 z) : m_Matrix{ x, y, z } {}
 		INLINE Matrix3(const Matrix3& mat) : m_Matrix{ mat.m_Matrix[0], mat.m_Matrix[1], mat.m_Matrix[2] } {}
-		INLINE Matrix3(Quaternion q):Matrix3(XMMatrixRotationQuaternion(q)){}
 
-		INLINE explicit Matrix3(const XMMATRIX& mat) : m_Matrix{Vector3(mat.r[0]), Vector3(mat.r[1]), Vector3(mat.r[2])} {}
+		INLINE explicit Matrix3(Quaternion q):Matrix3(XMMatrixRotationQuaternion(q)){}
+		INLINE explicit Matrix3(FXMMATRIX mat) : m_Matrix{Vector3(mat.r[0]), Vector3(mat.r[1]), Vector3(mat.r[2])} {}
 		INLINE explicit Matrix3(IdentityTag) : m_Matrix{Vector3(kXUnitVector), Vector3(kYUnitVector), Vector3(kZUnitVector) }{}
 		INLINE explicit Matrix3(ZeroTag) : m_Matrix{Vector3(kZero), Vector3(kZero), Vector3(kZero) }{}
 

@@ -3,8 +3,13 @@
 #include "Scalar.h"
 namespace Reverie::Math
 {
+	class Matrix4;
+	class AffineTransform;
+	class UniformTransform;
+	class OrthogonalTransform;
 	class Matrix3;
 	class Vector4;
+	class Quaternion;
 	class Vector3
 	{
 	public:
@@ -12,8 +17,8 @@ namespace Reverie::Math
 		INLINE Vector3(float x, float y, float z) : m_Vector(XMVectorSet(x, y, z, z)) {}
 		INLINE Vector3(const XMFLOAT3& vec) : m_Vector(XMLoadFloat3(&vec)) {}
 		INLINE Vector3(const Vector3& vec) : m_Vector(vec) {}
-		INLINE Vector3(Scalar vec) : m_Vector(vec) {}
 
+		INLINE explicit Vector3(Scalar vec) : m_Vector(vec) {}
 		INLINE explicit Vector3(Vector4 vec);
 		INLINE explicit Vector3(FXMVECTOR vec) : m_Vector(vec) {}
 		INLINE explicit Vector3(IdentityTag) : m_Vector(XMVectorSplatOne()) {}
@@ -61,13 +66,24 @@ namespace Reverie::Math
 		INLINE Vector3 operator/(Scalar s) const { return *this / Vector3(s); }
 		INLINE Vector3 operator*(float f) const { return *this * Scalar(f); }
 		INLINE Vector3 operator/(float f) const { return *this / Scalar(f); }
+
 		INLINE Vector3 operator*(const Matrix3& mat) const;
+		INLINE Vector3 operator*(Quaternion rhs) const;
+		INLINE Vector3 operator*(const OrthogonalTransform& t) const;
+		INLINE Vector3 operator*(const UniformTransform& t) const;
+		INLINE Vector3 operator*(const AffineTransform& t) const;
+		INLINE Vector4 operator* (const Matrix4& mat) const;
 
 		INLINE Vector3 operator+=(Vector3 vec) { *this = *this + vec; return *this; }
 		INLINE Vector3 operator-=(Vector3 vec) { *this = *this - vec; return *this; }
 		INLINE Vector3 operator*=(Vector3 vec) { *this = *this * vec; return *this; }
 		INLINE Vector3 operator*=(const Matrix3& mat);
 		INLINE Vector3 operator/=(Vector3 vec) { *this = *this / vec; return *this; }
+		INLINE Vector3 operator*=(Quaternion rhs);
+		INLINE Vector3 operator*=(const OrthogonalTransform& t);
+		INLINE Vector3 operator*=(const UniformTransform& t);
+		INLINE Vector3 operator*=(const AffineTransform& t);
+		INLINE Vector3 operator*=(const Matrix4& mat);
 
 		INLINE friend Vector3 operator*(Scalar s, Vector3 vec)
 		{
@@ -159,9 +175,14 @@ namespace Reverie::Math
 		INLINE Vector4 operator/(Scalar s) const { return *this / Vector4(s); }
 		INLINE Vector4 operator*(float f) const { return *this * Scalar(f); }
 		INLINE Vector4 operator/(float f) const { return *this / Scalar(f); }
+		INLINE Vector4 operator*(const OrthogonalTransform& t) const;
+		INLINE Vector4 operator* (const Matrix4& mat) const;
 
 		INLINE Vector4 operator*=(Vector4 vec) { *this = *this * vec; return *this; }
 		INLINE Vector4 operator/=(Vector4 vec) { *this = *this / vec; return *this; }
+		INLINE Vector4 operator*=(const OrthogonalTransform& t);
+		INLINE Vector4 operator*=(const Matrix4& mat);
+
 
 		INLINE friend Vector4 operator*(Scalar s, Vector4 vec)
 		{

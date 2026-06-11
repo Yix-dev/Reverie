@@ -30,6 +30,7 @@ project "ReverieCore"
     {
         "%{prj.name}/Source/**.h",
         "%{prj.name}/Source/**.cpp",
+        "app.manifest"
     }
 
     
@@ -38,7 +39,8 @@ project "ReverieCore"
     {
         "%{prj.name}/Source",
         "%{prj.name}/Vendor/spdlog/include",
-        "%{prj.name}/Vendor/DirectX/include"
+        "%{prj.name}/Vendor/DirectX/include",
+        "%{prj.name}/Vendor/miniaudio"
     }
 
     filter "system:windows"
@@ -81,7 +83,7 @@ project "ReverieCore"
         
 project "Sandbox"
     location "Sandbox"
-    kind "ConsoleApp"
+    kind "WindowedApp"
     language "C++"  
     staticruntime "off"
     cppdialect "C++23"
@@ -93,12 +95,14 @@ project "Sandbox"
     {
         "%{prj.name}/Source/**.h",
         "%{prj.name}/Source/**.cpp",
+        "app.manifest"
     } 
 
     includedirs
     {
         "ReverieCore/Vendor/spdlog/include",
         "ReverieCore/Vendor/DirectX/include",
+        "ReverieCore/Vendor/miniaudio",
         "ReverieCore/Source"
     }
 

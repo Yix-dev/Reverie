@@ -1,54 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Reverie">
-      <UniqueIdentifier>{57BB10A0-C39A-8F3B-CCB2-1A123811F69C}</UniqueIdentifier>
+    <Filter Include="Source">
+      <UniqueIdentifier>{56EB95D1-428D-C0A7-2B48-D4FB178947F8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Reverie\Math">
-      <UniqueIdentifier>{90CE2C2D-7C31-BCD1-25B7-F48711F98754}</UniqueIdentifier>
+    <Filter Include="Source\Reverie">
+      <UniqueIdentifier>{971486F0-83E2-79F6-6C76-EA1C58E3555B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Reverie\Application">
+      <UniqueIdentifier>{DAEA0FE8-C6FA-BBB8-2FB4-20D71BE3AA51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Reverie\Event">
+      <UniqueIdentifier>{286B2424-14FA-ADED-BD18-C2E8A986BE93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Reverie\Math">
+      <UniqueIdentifier>{D0EF2B3F-3C51-094D-C5BE-4FFF311F400C}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Core.h" />
+    <ClInclude Include="Source\Core.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Application\Application.h">
+      <Filter>Source\Reverie\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Application\LoggingSystem.h">
+      <Filter>Source\Reverie\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Application\System.h">
+      <Filter>Source\Reverie\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Application\Window.h">
+      <Filter>Source\Reverie\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\EntryPoint.h">
+      <Filter>Source\Reverie</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Event\ApplicationEvent.h">
+      <Filter>Source\Reverie\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Event\Event.h">
+      <Filter>Source\Reverie\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Event\EventBase.h">
+      <Filter>Source\Reverie\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Event\Eventbus.h">
+      <Filter>Source\Reverie\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Event\KeyEvent.h">
+      <Filter>Source\Reverie\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Event\MouseEvent.h">
+      <Filter>Source\Reverie\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Event\WindowEvent.h">
+      <Filter>Source\Reverie\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Log.h">
+      <Filter>Source\Reverie</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Math\BoundingBox.h">
+      <Filter>Source\Reverie\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Math\BoundingSphere.h">
+      <Filter>Source\Reverie\Math</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Reverie\Math\Common.h">
-      <Filter>Reverie\Math</Filter>
+      <Filter>Source\Reverie\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Reverie\Math\Math.h">
-      <Filter>Reverie\Math</Filter>
+      <Filter>Source\Reverie\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Reverie\Math\Matrix3.h">
-      <Filter>Reverie\Math</Filter>
+      <Filter>Source\Reverie\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Math\Matrix4.h">
+      <Filter>Source\Reverie\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Reverie\Math\Quaternion.h">
-      <Filter>Reverie\Math</Filter>
+      <Filter>Source\Reverie\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Reverie\Math\Scalar.h">
-      <Filter>Reverie\Math</Filter>
+      <Filter>Source\Reverie\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Reverie\Math\Transform.h">
+      <Filter>Source\Reverie\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Reverie\Math\Vector.h">
-      <Filter>Reverie\Math</Filter>
+      <Filter>Source\Reverie\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Source\pch.h" />
-    <ClInclude Include="Source\Reverie\Event\Event.h" />
-    <ClInclude Include="Source\Reverie\Event\KeyEvent.h" />
-    <ClInclude Include="Source\Reverie\Event\MouseEvent.h" />
-    <ClInclude Include="Source\Reverie\Event\WindowEvent.h" />
-    <ClInclude Include="Source\Reverie\Event\ApplicationEvent.h" />
-    <ClInclude Include="Source\Reverie\Utility.h" />
-    <ClInclude Include="Source\Reverie\Math\Transform.h" />
-    <ClInclude Include="Source\Reverie\Application\Window.h" />
-    <ClInclude Include="Source\Reverie\Application\Application.h" />
-    <ClInclude Include="Source\Reverie\Math\BoundingBox.h" />
-    <ClInclude Include="Source\Reverie\Math\BoundingSphere.h" />
-    <ClInclude Include="Source\Reverie\Math\Matrix4.h" />
-    <ClInclude Include="Source\Reverie\Log.h" />
-    <ClInclude Include="Source\Reverie\Event\Eventbus.h" />
-    <ClInclude Include="Source\Reverie\Application\System.h" />
-    <ClInclude Include="Source\Reverie\EntryPoint.h" />
+    <ClInclude Include="Source\Reverie\Utility.h">
+      <Filter>Source\Reverie</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\pch.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\pch.cpp" />
-    <ClCompile Include="Source\Reverie\Application\Window.cpp" />
-    <ClCompile Include="Source\Reverie\Application\Application.cpp" />
+    <ClCompile Include="Source\Reverie\Application\Application.cpp">
+      <Filter>Source\Reverie\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Reverie\Application\LoggingSystem.cpp">
+      <Filter>Source\Reverie\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Reverie\Application\Window.cpp">
+      <Filter>Source\Reverie\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\pch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\app.manifest" />
   </ItemGroup>
 </Project>

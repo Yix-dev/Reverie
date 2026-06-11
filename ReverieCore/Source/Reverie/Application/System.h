@@ -1,6 +1,13 @@
 #pragma once
+#include <memory>
+#include <typeindex>
+#include <vector>
+#include <unordered_map>
+
 namespace Reverie
 {
+	class Eventbus;
+
 	class System
 	{
 	public:
@@ -14,8 +21,8 @@ namespace Reverie
 	class SystemRegistry
 	{
 	public:
-		SystemRegistry();
-		~SystemRegistry();
+        SystemRegistry() = default;
+		~SystemRegistry() = default;
 
         template<typename TSystem, typename... TArgs>
         TSystem* Register(TArgs&&... args)

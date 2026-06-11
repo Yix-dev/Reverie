@@ -7,7 +7,7 @@
 
 namespace Reverie
 {
-	class Event;
+	class EventBase;
 
 	struct WindowDesc
 	{
@@ -53,6 +53,9 @@ namespace Reverie
 		std::string m_Title = "Reverie";
 		uint32_t m_Width;
 		uint32_t m_Height;
+
+		uint16_t m_Dpi = 96;
+		float m_Scale = 1.0f;
 	};
 
 }

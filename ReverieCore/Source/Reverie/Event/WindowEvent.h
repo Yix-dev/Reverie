@@ -1,9 +1,9 @@
 #pragma once
-#include "Event.h"
+#include "EventBase.h"
 
 namespace Reverie
 {
-	class WindowResizeEvent : public Event
+	class WindowResizeEvent : public EventBase
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height) :m_Width(width), m_Height(height) {}
@@ -23,7 +23,7 @@ namespace Reverie
 		unsigned int m_Width, m_Height;
 	};
 
-	class WindowCloseEvent : public Event
+	class WindowCloseEvent : public EventBase
 	{
 	public:
 		WindowCloseEvent() {}
@@ -32,7 +32,7 @@ namespace Reverie
 		EVENT_CLASS_CATEGORY(EventCategoryWindow | EventCategoryApplication)
 	};
 
-	class WindowFocusEvent : public Event
+	class WindowFocusEvent : public EventBase
 	{
 	public:
 		WindowFocusEvent() = default;
@@ -40,7 +40,7 @@ namespace Reverie
 		EVENT_CLASS_CATEGORY(EventCategoryWindow | EventCategoryApplication)
 	};
 
-	class WindowLostFocusEvent : public Event
+	class WindowLostFocusEvent : public EventBase
 	{
 	public:
 		WindowLostFocusEvent() = default;

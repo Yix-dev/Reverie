@@ -178,7 +178,7 @@ namespace Reverie::Math
 	INLINE Vector4 Vector4::operator*(const OrthogonalTransform& t) const
 	{
 		return Vector4(XMVectorPermute<0, 1, 2, 7>(Vector3(*this) * t.GetRotation(), XMVectorZero())) 
-		+ Vector4(XMVectorPermute<0, 1, 2, 7>(t.GetTranslation(), XMVectorSplatOne()) * this->GetW());
+		+ Vector4(XMVectorPermute<0, 1, 2, 7>(t.GetTranslation(), XMVectorSplatOne()) * (float)this->GetW());
 	}
 	INLINE Vector4 Vector4::operator*=(const OrthogonalTransform& t)
 	{

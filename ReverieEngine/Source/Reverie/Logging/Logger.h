@@ -1,25 +1,25 @@
 #pragma once
 #include <spdlog/spdlog.h>
 #include "Reverie/Log.h"
-#include "System.h"
+#include "../System.h"
 
 namespace Reverie
 {
-	class LoggingSystem : public System
+	class Logger
 	{
 	public:
-		LoggingSystem() : System(){}
-		~LoggingSystem() override;
+		Logger() = default;
+		~Logger() = default;
 
-		void Initialize(Eventbus* eventbus) override;
-		void OnUpdate() override;
-		void Shutdown() override;
+		static void Initialize(Eventbus* eventbus);
+		static void OnUpdate();
+		static void Shutdown();
 
 		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_CoreLogger; }
 		inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return s_ClientLogger; }
 	private:
 		template<typename TEvent>
-		void OnEvent(TEvent& e)
+		static void OnEvent(TEvent& e)
 		{
 			CORE_INFO(e.ToString());
 		}

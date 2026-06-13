@@ -1,10 +1,8 @@
 #include "pch.h"
 #include "Window.h"
 
-#include "Reverie/Event/ApplicationEvent.h"
-#include "Reverie/Event/KeyEvent.h"
-#include "Reverie/Event/MouseEvent.h"
-#include "Reverie/Event/WindowEvent.h"
+#include "Reverie/Event/Event.h"
+#include "../Logging/Logger.h"
 
 namespace Reverie
 {
@@ -40,7 +38,7 @@ namespace Reverie
 		m_Width = Desc.Width;
 		m_Height = Desc.Height;
 
-		//HZ_CORE_INFO("Creating window {0} ({1} {2})", Desc.Title, Desc.Width, Desc.Height);
+		CORE_INFO("Creating window {0} ({1} {2})", Desc.Title, Desc.Width, Desc.Height);
 
 		WNDCLASSEX wc = { 0 };
 		wc.cbSize = sizeof(WNDCLASSEX);
@@ -56,7 +54,7 @@ namespace Reverie
 		wc.hIconSm = LoadIcon(App, IDI_APPLICATION);
 		wc.lpszClassName = L"MainWindow";
 		bool success = RegisterClassEx(&wc);
-		//HZ_CORE_ASSERT(success, "Register Class failed");
+		CORE_ASSERT(success, "Register Class failed");
 
 		RECT R = { 0, 0,  (LONG)m_Width,  (LONG)m_Height };
 		AdjustWindowRect(&R, WS_OVERLAPPEDWINDOW, FALSE);
@@ -69,7 +67,7 @@ namespace Reverie
 		m_Dpi = GetDpiForWindow(m_Hwnd);
 		m_Scale = (float)m_Dpi / 96.0f;
 
-		//HZ_CORE_ASSERT(m_Hwnd, "Create Window Failed");
+		CORE_ASSERT(m_Hwnd, "Create Window Failed");
 
 		ShowWindow(m_Hwnd, SW_SHOW);
 		UpdateWindow(m_Hwnd);
@@ -171,7 +169,6 @@ namespace Reverie
 			m_Dpi = HIWORD(wParam);
 			m_Scale = (float)m_Dpi / 96.0f;
 
-			// windows gives you the correct new rect -- always use it
 			RECT* rect = reinterpret_cast<RECT*>(lParam);
 			SetWindowPos(m_Hwnd, nullptr,
 				rect->left,
@@ -233,18 +230,34 @@ namespace Reverie
 		}
 
 		case WM_LBUTTONDOWN:
+		{
+			m_Eventbus->Publish(MouseButtonPressedEvent(VK_LBUTTON));
+			return 0;
+		}
 		case WM_MBUTTONDOWN:
+		{
+			m_Eventbus->Publish(MouseButtonPressedEvent(VK_MBUTTON));
+			return 0;
+		}
 		case WM_RBUTTONDOWN:
 		{
-			m_Eventbus->Publish(MouseButtonPressedEvent(wParam));
+			m_Eventbus->Publish(MouseButtonPressedEvent(VK_RBUTTON));
 			return 0;
 		}
 
 		case WM_LBUTTONUP:
+		{
+			m_Eventbus->Publish(MouseButtonReleasedEvent(VK_LBUTTON));
+			return 0;
+		}
 		case WM_MBUTTONUP:
+		{
+			m_Eventbus->Publish(MouseButtonReleasedEvent(VK_MBUTTON));
+			return 0;
+		}
 		case WM_RBUTTONUP:
 		{
-			m_Eventbus->Publish(MouseButtonReleasedEvent(wParam));
+			m_Eventbus->Publish(MouseButtonReleasedEvent(VK_RBUTTON));
 			return 0;
 		}
 

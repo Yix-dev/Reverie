@@ -13,8 +13,8 @@ outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
 IncludeDir = {}
 
-project "ReverieCore"
-    location "ReverieCore"
+project "ReverieEngine"
+    location "ReverieEngine"
     kind "StaticLib"
     language "C++"
     staticruntime "On"
@@ -24,7 +24,7 @@ project "ReverieCore"
     objdir("bin-int/" ..outputdir .. "/%{prj.name}")
 
     pchheader "pch.h"
-    pchsource "ReverieCore/Source/pch.cpp"
+    pchsource "ReverieEngine/Source/pch.cpp"
 
     files
     {
@@ -50,7 +50,7 @@ project "ReverieCore"
         
         defines
         {
-             "HZ_PLATFORM_WINDOWS"   
+             "REVERIE_PLATFORM_WINDOWS"   
         }
 
         links
@@ -100,15 +100,15 @@ project "Sandbox"
 
     includedirs
     {
-        "ReverieCore/Vendor/spdlog/include",
-        "ReverieCore/Vendor/DirectX/include",
-        "ReverieCore/Vendor/miniaudio",
-        "ReverieCore/Source"
+        "ReverieEngine/Vendor/spdlog/include",
+        "ReverieEngine/Vendor/DirectX/include",
+        "ReverieEngine/Vendor/miniaudio",
+        "ReverieEngine/Source"
     }
 
     links
     {
-        "ReverieCore"
+        "ReverieEngine"
     }
 
     filter "system:windows"
@@ -119,7 +119,7 @@ project "Sandbox"
 
         defines
         {
-             "HZ_PLATFORM_WINDOWS"
+             "REVERIE_PLATFORM_WINDOWS"
         }
         buildoptions
         {

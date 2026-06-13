@@ -15,6 +15,7 @@ namespace Reverie
 		virtual void Initialize(Eventbus* eventbus) = 0;
 		virtual void OnUpdate() = 0;
 		virtual void Shutdown() = 0;
+        virtual void EndFrame(){}
 
 	};
 
@@ -53,6 +54,12 @@ namespace Reverie
         {
             for (auto system : m_SystemList)
                 system->OnUpdate();
+        }
+
+        void EndFrameAll()
+        {
+            for (auto itr = m_SystemList.rbegin(); itr != m_SystemList.rend(); ++itr)
+                (*itr)->EndFrame();
         }
 
         void ShutdownAll()

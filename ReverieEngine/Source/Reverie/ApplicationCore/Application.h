@@ -1,8 +1,8 @@
 #pragma once
-#include "System.h"
+#include "../System.h"
 #include "Reverie/Event/Event.h"
 #include "Reverie/Event/Eventbus.h"
-#include "Reverie/Application/Window.h"
+#include "Reverie/ApplicationCore/Window.h"
 
 namespace Reverie
 {

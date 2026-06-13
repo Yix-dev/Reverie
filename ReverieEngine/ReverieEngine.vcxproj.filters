@@ -7,8 +7,8 @@
     <Filter Include="Source\Reverie">
       <UniqueIdentifier>{971486F0-83E2-79F6-6C76-EA1C58E3555B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Reverie\Application">
-      <UniqueIdentifier>{DAEA0FE8-C6FA-BBB8-2FB4-20D71BE3AA51}</UniqueIdentifier>
+    <Filter Include="Source\Reverie\Audio">
+      <UniqueIdentifier>{D877DB23-C406-65ED-6D25-79E859937593}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Reverie\Event">
       <UniqueIdentifier>{286B2424-14FA-ADED-BD18-C2E8A986BE93}</UniqueIdentifier>
@@ -16,22 +16,19 @@
     <Filter Include="Source\Reverie\Math">
       <UniqueIdentifier>{D0EF2B3F-3C51-094D-C5BE-4FFF311F400C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Reverie\Renderer">
+      <UniqueIdentifier>{1D726393-89A9-AB2A-92B3-0F4EFE69D223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Reverie\ApplicationCore">
+      <UniqueIdentifier>{DAEA0FE8-C6FA-BBB8-2FB4-20D71BE3AA51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Core.h">
+    <ClInclude Include="Source\Engine.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Reverie\Application\Application.h">
-      <Filter>Source\Reverie\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Reverie\Application\LoggingSystem.h">
-      <Filter>Source\Reverie\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Reverie\Application\System.h">
-      <Filter>Source\Reverie\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Reverie\Application\Window.h">
-      <Filter>Source\Reverie\Application</Filter>
+    <ClInclude Include="Source\Reverie\Audio\AudioSystem.h">
+      <Filter>Source\Reverie\Audio</Filter>
     </ClInclude>
     <ClInclude Include="Source\Reverie\EntryPoint.h">
       <Filter>Source\Reverie</Filter>
@@ -90,28 +87,42 @@
     <ClInclude Include="Source\Reverie\Math\Vector.h">
       <Filter>Source\Reverie\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Reverie\Renderer\RenderingSystem.h">
+      <Filter>Source\Reverie\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Reverie\Utility.h">
       <Filter>Source\Reverie</Filter>
     </ClInclude>
     <ClInclude Include="Source\pch.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Reverie\ApplicationCore\Window.h" />
+    <ClInclude Include="Source\Reverie\ApplicationCore\Application.h" />
+    <ClInclude Include="Source\Reverie\System.h" />
+    <ClInclude Include="Source\Reverie\Logging\Logger.h" />
+    <ClInclude Include="Source\Reverie\Renderer\CommandAllocatorPool.h" />
+    <ClInclude Include="Source\Reverie\Input\InputSystem.h" />
+    <ClInclude Include="Source\Reverie\Input\InputCode.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Reverie\Application\Application.cpp">
-      <Filter>Source\Reverie\Application</Filter>
+    <ClCompile Include="Source\Reverie\Audio\AudioSystem.cpp">
+      <Filter>Source\Reverie\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Reverie\Application\LoggingSystem.cpp">
-      <Filter>Source\Reverie\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Reverie\Application\Window.cpp">
-      <Filter>Source\Reverie\Application</Filter>
+    <ClCompile Include="Source\Reverie\Renderer\RenderingSystem.cpp">
+      <Filter>Source\Reverie\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Source\pch.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Reverie\ApplicationCore\Window.cpp" />
+    <ClCompile Include="Source\Reverie\ApplicationCore\Application.cpp" />
+    <ClCompile Include="Source\Reverie\Logging\Logger.cpp" />
+    <ClCompile Include="Source\Reverie\Input\InputSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\app.manifest" />
+    <None Include="Source\Reverie\Math\Functions.inl">
+      <Filter>Source\Reverie\Math</Filter>
+    </None>
   </ItemGroup>
 </Project>

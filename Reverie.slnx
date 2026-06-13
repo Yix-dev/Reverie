@@ -5,7 +5,7 @@
     <BuildType Name="Release" />
     <Platform Name="x64" />
   </Configurations>
-  <Project Path="ReverieCore\ReverieCore.vcxproj" Id="80334366-ECE8-BB5B-75DD-B532E191B25F">
+  <Project Path="ReverieEngine\ReverieEngine.vcxproj" Id="AD637008-1924-EC3E-E25E-35BC4EDE301B">
   </Project>
   <Project Path="Sandbox\Sandbox.vcxproj" Id="F4C124E3-60A1-A37E-69B9-2E55D5170AE0" DefaultStartup="true">
   </Project>

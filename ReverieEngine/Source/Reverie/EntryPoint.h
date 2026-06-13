@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-#include "Application/Application.h"
+#include "ApplicationCore/Application.h"
 
 extern std::unique_ptr<Reverie::Application> Reverie::CreateApplication(HINSTANCE Instance);
 
@@ -24,6 +24,7 @@ int APIENTRY WinMain(HINSTANCE instance, HINSTANCE hInstPrev, PSTR cmdline, int 
         SetConsoleTitleA("Reverie Debug Console");
     }
 #endif
+
 	std::unique_ptr<Reverie::Application> application = Reverie::CreateApplication(instance);
 	application->Run();
 

@@ -152,9 +152,11 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Reverie\Audio\AudioSystem.h" />
+    <ClInclude Include="Source\Reverie\Renderer\RenderingSystem.h" />
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\Reverie\Application\Application.h" />
-    <ClInclude Include="Source\Reverie\Application\LoggingSystem.h" />
+    <ClInclude Include="Source\Reverie\Application\Logger.h" />
     <ClInclude Include="Source\Reverie\Application\System.h" />
     <ClInclude Include="Source\Reverie\Application\Window.h" />
     <ClInclude Include="Source\Reverie\EntryPoint.h" />
@@ -180,8 +182,10 @@
     <ClInclude Include="Source\pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Reverie\Audio\AudioSystem.cpp" />
+    <ClCompile Include="Source\Reverie\Renderer\RenderingSystem.cpp" />
     <ClCompile Include="Source\Reverie\Application\Application.cpp" />
-    <ClCompile Include="Source\Reverie\Application\LoggingSystem.cpp" />
+    <ClCompile Include="Source\Reverie\Application\Logger.cpp" />
     <ClCompile Include="Source\Reverie\Application\Window.cpp" />
     <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

@@ -59,8 +59,8 @@ namespace Reverie
 		template<typename TEvent>
 		SubscriberHandle Subscribe(std::function<bool(TEvent&)> callback, int priority = Priority::Normal)
 		{
-			//TODO own assert
-			static_assert(std::is_base_of_v<EventBase, TEvent>, "Invalid EventBase");
+			
+			STATIC_ASSERT(std::is_base_of_v<EventBase, TEvent>, "Invalid EventBase");
 
 			uint32_t ID = m_NextID++;
 
@@ -98,8 +98,8 @@ namespace Reverie
 		template<typename TEvent>
 		void Publish(TEvent& e)
 		{
-			//TODO own assert
-			static_assert(std::is_base_of_v<EventBase, TEvent>, "Invalid EventBase");
+			
+			STATIC_ASSERT(std::is_base_of_v<EventBase, TEvent>, "Invalid EventBase");
 
 			auto it = m_SubscriberList.find(typeid(e));
 			if (it == m_SubscriberList.end())
